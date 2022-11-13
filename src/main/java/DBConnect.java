@@ -10,7 +10,7 @@ public class DBConnect {
 	// Connects to database
 	public Connection getConnection() {
 		// Get database connection URL
-		String connectionUrl = "jdbc:mysql://localhost:3306/BarBeerDrinkerSample";
+		String connectionUrl = "jdbc:mysql://localhost:3306/tradingCardAuctionWebsite";
 		Connection con = null;
 		// Load JDBC Driver
 		try {
