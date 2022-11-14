@@ -1,2 +1,2 @@
-create database if not exists `tradingCardAuctionWebsite`;
-use `tradingCardAuctionWebsite`;
+CREATE DATABASE IF NOT EXISTS 'tradingCardAuctionWebsite';
+USE 'tradingCardAuctionWebsite';

@@ -8,11 +8,10 @@
 		<h1> BuyMe Trading Card Auctions </h1>
 		
 		<!-- This section is for logging in -->
-		<p> Please login below or register an account to continue to the website: </p>
+		<p> Please login below to continue to the website: </p>
 		<form method="post" action="loginReader.jsp">
 			Username: <input type="text" name="username">
-			<br>
-			<br>
+			<br><br>
 			Password: <input type="text" name="password">
 			<input type="submit" value="Login">
 		</form>
@@ -22,8 +21,15 @@
 			session.removeAttribute("invalidLogin");
 		}
 		%>
+		<br><br><br><br>
 		
 		<!-- This section is for registering -->
-		
+		<p> If you do not have an account yet, register below: </p>
+		<form method="post" action="registration.jsp">
+			Username: <input type="text" name="username">
+			<br><br>
+			Password: <input type="text" name="password">
+			<input type="submit" value="Register">
+		</form>
 	</body>
 </html>
