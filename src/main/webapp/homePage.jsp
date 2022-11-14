@@ -6,6 +6,7 @@
 	</head>
 	<body>
 		<h1> Welcome <%out.println(session.getAttribute("user"));%> </h1>
+		<a href="logout.jsp">Log Out</a>
 	</body>
 </html>
 	

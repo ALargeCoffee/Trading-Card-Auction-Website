@@ -1,4 +1,4 @@
-CREATE DATABASE  IF NOT EXISTS `trading_card_auction_website` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+CREATE DATABASE IF NOT EXISTS `trading_card_auction_website` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `trading_card_auction_website`;
 -- MySQL dump 10.13  Distrib 8.0.26, for macos11 (x86_64)
 --

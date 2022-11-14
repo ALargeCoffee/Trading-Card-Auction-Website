@@ -1,3 +1,4 @@
+package project.pkg;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
@@ -9,7 +10,7 @@ public class DBConnect {
 	// Connect to database
 	public Connection getConnection() {
 		// Get database connection URL
-		String connectionUrl = "jdbc:mysql://localhost:3306/tradingCardAuctionWebsite";
+		String connectionUrl = "jdbc:mysql://localhost:3306/trading_card_auction_website";
 		Connection con = null;
 		// Load JDBC Driver
 		try {
