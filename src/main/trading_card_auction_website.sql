@@ -38,6 +38,7 @@ CREATE TABLE `admin_staff_member` (
 
 LOCK TABLES `admin_staff_member` WRITE;
 /*!40000 ALTER TABLE `admin_staff_member` DISABLE KEYS */;
+INSERT INTO `admin_staff_member` VALUES ('MainAdmin', 'MainAdmin', 'testPass546');
 /*!40000 ALTER TABLE `admin_staff_member` ENABLE KEYS */;
 UNLOCK TABLES;
 

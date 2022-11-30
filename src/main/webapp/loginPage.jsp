@@ -6,15 +6,16 @@
 	</head>
 	<body>
 		<h1> BuyMe Trading Card Auctions </h1>
-		
 		<!-- This section is for logging in -->
 		<p> Please login below to continue to the website: </p>
 		<form method="post" action="loginReader.jsp">
 			Username: <input type="text" name="username">
 			<br><br>
 			Password: <input type="text" name="password">
+			<br><br>
 			<input type="submit" value="Login">
 		</form>
+		<br>
 		<%
 		if (session.getAttribute("invalidLogin") != null) {
 			out.println("Invalid login credentials. Please try again or register below.");
@@ -36,5 +37,12 @@
 			<br><br>
 			<input type="submit" value="Register">
 		</form>
+		<br>
+		<%
+			if (session.getAttribute("invalidRegister") != null) {
+				out.println("A user with this username already exists. Please pick a different username.");
+				session.removeAttribute("invalidRegister");
+			}
+		%>
 	</body>
 </html>
