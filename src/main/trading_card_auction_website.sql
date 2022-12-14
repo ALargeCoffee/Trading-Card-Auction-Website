@@ -21,26 +21,28 @@ USE `trading_card_auction_website`;
 -- Table structure for table `admin_staff_member`
 --
 
+/*
 DROP TABLE IF EXISTS `admin_staff_member`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+-- !40101 SET @saved_cs_client     = @@character_set_client;
+-- !50503 SET character_set_client = utf8mb4;
 CREATE TABLE `admin_staff_member` (
   `admin_id` varchar(15) NOT NULL,
   `admin_display_name` varchar(25) DEFAULT NULL,
   `admin_password` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`admin_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- !40101 SET character_set_client = @saved_cs_client;
 
 --
 -- Dumping data for table `admin_staff_member`
 --
 
 LOCK TABLES `admin_staff_member` WRITE;
-/*!40000 ALTER TABLE `admin_staff_member` DISABLE KEYS */;
+-- !40000 ALTER TABLE `admin_staff_member` DISABLE KEYS;
 INSERT INTO `admin_staff_member` VALUES ('MainAdmin', 'MainAdmin', 'testPass546');
-/*!40000 ALTER TABLE `admin_staff_member` ENABLE KEYS */;
+-- !40000 ALTER TABLE `admin_staff_member` ENABLE KEYS;
 UNLOCK TABLES;
+*/
 
 --
 -- Table structure for table `buyer`
@@ -97,27 +99,27 @@ UNLOCK TABLES;
 --
 -- Table structure for table `customer_representative`
 --
-
+/*
 DROP TABLE IF EXISTS `customer_representative`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
+-- !40101 SET @saved_cs_client     = @@character_set_client;
+-- !50503 SET character_set_client = utf8mb4;
 CREATE TABLE `customer_representative` (
   `representative_id` varchar(15) NOT NULL,
   `cr_password` varchar(25) DEFAULT NULL,
   `cr_display_name` varchar(25) DEFAULT NULL,
   PRIMARY KEY (`representative_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- !40101 SET character_set_client = @saved_cs_client;
 
 --
 -- Dumping data for table `customer_representative`
 --
 
 LOCK TABLES `customer_representative` WRITE;
-/*!40000 ALTER TABLE `customer_representative` DISABLE KEYS */;
-/*!40000 ALTER TABLE `customer_representative` ENABLE KEYS */;
+-- !40000 ALTER TABLE `customer_representative` DISABLE KEYS;
+-- !40000 ALTER TABLE `customer_representative` ENABLE KEYS;
 UNLOCK TABLES;
-
+*/
 --
 -- Table structure for table `item`
 --
@@ -263,6 +265,7 @@ CREATE TABLE `user` (
   `user_display_name` varchar(25) DEFAULT NULL,
   `user_password` varchar(25) DEFAULT NULL,
   `auction_history` varchar(200) DEFAULT NULL,
+  `userType` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -273,7 +276,9 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (2019380917,'user@gmail.com','test_user','1234',NULL);
+INSERT INTO `user` VALUES (2019380917,'user@gmail.com','test_user','1234',NULL,'user');
+INSERT INTO `user` VALUES (1234567890,'adminemail@gmail.com','MainAdmin', 'testPass546',NULL,'admin');
+INSERT INTO `user` VALUES (4567890123,'cusrep@gmail.com','MainRep','pass234',NULL,'customerRep');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
