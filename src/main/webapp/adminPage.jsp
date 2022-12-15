@@ -12,14 +12,18 @@
 		<a href="homePage.jsp">Home</a>
 		
 		<!-- Main body -->
-		<h2> Admin Tools </h2>
-		<p> Create a customer representative account: </p>
+		<h1> Admin Tools </h1>
+		
+		<!-- Customer rep account creation -->
+		<h2> Create a customer representative account: </h2>
 		<form method="post" action="registration.jsp">
 		Username: <input type="text" name="username">
 		<br><br>
 		Password: <input type="text" name="password">
 		<br><br>
-		Representative ID: <input type="text" name="repID">
+		Phone Number: <input type="text" name="number">
+		<br><br>
+		Email: <input type="text" name="email">
 		<br><br>
 		<input type="submit" value="Create">
 		</form>
@@ -30,7 +34,31 @@
 			session.removeAttribute("invalidRegister");
 		}
 		%>
-		<br> <br> 
-		<p> Generate a sales report: </p>
+		<br>
+		
+		<!-- Sales reports -->
+		<!-- Total site earnings -->
+		<h2> Generate sales reports: </h2>
+		<form method = "get" action="totalEarnings.jsp">
+			Total Site Earnings: <input type="submit" value="Display">
+		</form>
+		<%
+			if (session.getAttribute("totEarn") != null) {
+				out.println(session.getAttribute("totEarn"));
+				session.removeAttribute("totEarn");
+			}
+		%>
+		<br>
+		Calculate sales reports for:
+		<br> <br>
+		<form method = "get" action="earningsReport.jsp">
+			<input type="radio" name="type" value="cards"> Each card
+			<br> <br>
+			<input type="radio" name="type" value="cardTypes"> Each card type
+			<br> <br>
+			<input type="radio" name="type" value="users"> Each user
+			<br> <br>
+			<input type="submit" value="Submit">
+		</form>
 	</body>
 </html>
