@@ -1,0 +1,161 @@
+/* set ups */
+body {
+	background: white;
+  }
+  h1 {
+	margin-left: 30px;
+  }
+  
+  .label {
+	font-size: 12px;
+	margin-bottom: 7px;
+  }
+  
+  html,
+  body,
+  div,
+  p,
+  ul,
+  li {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+	font-family: "Roboto", sans-serif;
+	font-weight: 100;
+  }
+  
+  /* nav bar */
+  .nav {
+	background: #000;
+	height: 60px;
+  }
+  
+  .nav li {
+	display: inline-block;
+	list-style: none;
+	height: 60px;
+	line-height: 60px;
+	padding: 0 40px;
+  }
+  
+  .nav li:hover {
+	background: #B0D4CA;
+	transition: background 0.3s;
+  }
+  
+  .nav-link {
+	color: #fff;
+	text-decoration: none;
+  }
+  
+  /* search bar */
+  .search {
+	position: relative;
+	display: flex;
+	margin-left: 35px;
+	width: 100%;
+  }
+  
+  .search-form {
+	width: 100%;
+  }
+  
+  .searchTerm {
+	width: 60%;
+	border: 1px solid #000;
+	padding: 5px;
+	height: 20px;
+  }
+  
+  .searchButton {
+	width: 40px;
+	height: 36px;
+	border: 1px solid #000;
+	background: #000;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	font-size: 20px;
+  }
+  
+  /* product search options */
+  .product-tabs {
+	display: flex;
+	margin-top: 20px;
+	margin-left: 35px;
+  }
+  
+  .product-tabs button {
+	margin-right: 10px;
+  }
+  
+  /* product-container */
+  .product-container {
+	margin-top: 5px;
+	width: 90%;
+	padding-left: 35px;
+	display: flex;
+  }
+  
+  .product-card {
+	margin-top: 20px;
+  }
+  
+  .product-list {
+	width: 75%;
+	margin-left: 40px;
+  }
+  
+  .product-img {
+	width: 180px;
+	height: 250px;
+	margin-right: 35px;
+  }
+  
+  .product-img img {
+	width: 180px;
+	height: 250px;
+	object-fit: cover;
+  }
+  
+  .product-info {
+	position: relative;
+	width: 100%;
+  }
+  
+  .product-card-wrapper {
+	width: 100%;
+	display: flex;
+  }
+  
+  .product-text {
+	position: absolute;
+  }
+  
+  .product-text h2 {
+	margin: 0px;
+  }
+  .product-text h4 {
+	margin: 0px;
+	margin-top: 5px;
+	margin-bottom: 25px;
+	font-size: 15px;
+	font-weight: 100;
+  }
+  
+  .product-text p {
+	margin: 0px;
+	margin-bottom: 10px;
+	font-size: 15px;
+  }
+  
+  .product-price-btn {
+	position: absolute;
+	margin-top: 50px;
+	right: 0;
+	bottom: 0;
+  }
+  

@@ -20,7 +20,7 @@ public class DBConnect {
 		}
 		// Use connection object to connect to DB
 		try {
-			con = DriverManager.getConnection(connectionUrl,"root", "g6%PXrw77$_");
+			con = DriverManager.getConnection(connectionUrl,"kylearcilla", "kyle13410");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
