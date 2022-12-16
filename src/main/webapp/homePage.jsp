@@ -7,6 +7,7 @@
 	<body>
 		<!-- Links at the top of the page -->
 		<a href="logout.jsp" class="nav-link">Logout</a>
+		<a href="qna.jsp" class="nav-link">Q&amp;A</a>
 		<% if (session.getAttribute("userType").equals("admin")) { %>
 		<a href="adminPage.jsp" class="nav-link">Admin Tools</a>
 		<% } %>
@@ -25,6 +26,14 @@
 				out.println(session.getAttribute("user"));
 			}
 		%>! </h1>
+		
+		<!-- Search bar -->
+		<form id="form"> 
+		  <input type="search" id="query" name="q" placeholder="Search for cards...">
+		  <button>Search</button>
+		</form>
+		
+		
 	</body>
 </html>
 	
