@@ -37,7 +37,6 @@
 		<br>
 		
 		<!-- Sales reports -->
-		<!-- Total site earnings -->
 		<h2> Generate sales reports: </h2>
 		<form method = "get" action="totalEarnings.jsp">
 			Total Site Earnings: <input type="submit" value="Display">
@@ -57,6 +56,17 @@
 			<input type="radio" name="type" value="cardTypes"> Each card type
 			<br> <br>
 			<input type="radio" name="type" value="users"> Each user
+			<br> <br>
+			<input type="submit" value="Submit">
+		</form>
+		<br> <br>
+		
+		<!-- Best selling items/best buyers -->
+		<h2> Identify best-selling items and best buyers </h2>
+		<form method="get" action="bestThings.jsp">
+			<input type="radio" name="type" value="items"> Best-selling items
+			<br> <br>
+			<input type="radio" name="type" value="buyers"> Best buyers
 			<br> <br>
 			<input type="submit" value="Submit">
 		</form>

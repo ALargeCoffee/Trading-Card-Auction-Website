@@ -10,7 +10,7 @@ public class DBConnect {
 	// Connect to database
 	public Connection getConnection() {
 		// Get database connection URL
-		String connectionUrl = "jdbc:mysql://localhost:3306/trading_card_auction_website";
+		String connectionUrl = "jdbc:mysql://localhost:3306/trading_card_auction_website"; // YOU *MIGHT* NEED TO CHANGE THIS
 		Connection con = null;
 		// Load JDBC Driver
 		try {
@@ -20,7 +20,7 @@ public class DBConnect {
 		}
 		// Use connection object to connect to DB
 		try {
-			con = DriverManager.getConnection(connectionUrl,"root", "g6%PXrw77$_");
+			con = DriverManager.getConnection(connectionUrl,"root", "g6%PXrw77$_"); // CHANGE THIS
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
