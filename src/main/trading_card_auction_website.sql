@@ -133,6 +133,23 @@ LOCK TABLES `selling` WRITE;
 /*!40000 ALTER TABLE `selling` ENABLE KEYS */;
 UNLOCK TABLES;
 
+DROP TABLE IF EXISTS `questionsAsksResponds`;
+CREATE TABLE `questionsAsksResponds` (
+	`question` varchar(250) DEFAULT NULL,
+    `response` varchar(400) DEFAULT NULL,
+    `asker` varchar(25) DEFAULT NULL,
+    `responder` varchar(25) DEFAULT NULL,
+    `question_id` int NOT NULL,
+    PRIMARY KEY (`question_id`),
+    CONSTRAINT `questionsAsksResponds_ibfk_1` FOREIGN KEY (`asker`) REFERENCES `user` (`user_display_name`),
+    CONSTRAINT `questionsAsksResponds_ibfk_2` FOREIGN KEY (`responder`) REFERENCES `user` (`user_display_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+LOCK TABLES `questionsAsksResponds` WRITE;
+INSERT INTO `questionsAsksResponds` VALUES ('Who made this website?', 'People.', 'test_user', 'MainRep', 11),
+('How many items can I bid on?', 'As many as you want!', 'test_user', 'MainRep', 12);
+UNLOCK TABLES;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
