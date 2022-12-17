@@ -18,23 +18,28 @@
 			Integer enteredID = Integer.parseInt(request.getParameter("q"));
 			// select all other attributes of item based on its ID
 			// no bid list for now
-			String query = "SELECT i.start_time, i.end_time, i.description, i.min_price, i.initial_price, i.category, i.card_name FROM item i WHERE i.auction_id =" + enteredID +";";
+			String query = "SELECT i.start_time, i.end_time, i.description, i.min_price, i.initial_price, i.category, i.card_name, i.auction_id FROM item i WHERE i.auction_id =" + enteredID +";";
 			try {
 				ResultSet thisCard = check.executeQuery(query);
 				thisCard.next();
-				out.println("<p> Description: " + thisCard.getString("description") + "</p>"
-							+ "<p> Auction started: " + thisCard.getString("start_time") + "</p>"
-							+ "<p> Auction will end: " + thisCard.getString("end_time") + "</p>"
-							+ "<p> Initial price: " + thisCard.getString("initial_price") + "</p>"
-							+ "<p> Minimum price: " + thisCard.getString("min_price") + "</p>"
-							+ "<p> Card name: " + thisCard.getString("card_name") + "</p>"
-							+ "<p> Category: " + thisCard.getString("category") + "</p>");
+				out.println("<p> Card name: " + thisCard.getString("card_name") + " </p>"
+						+ "<p> Description: " + thisCard.getString("description") + "</p>"
+						+ "<p> Starting price: $" + thisCard.getString("initial_price") + ".00 </p>"
+						+ "<p> Minimum price: $" + thisCard.getString("min_price") + ".00 </p>"
+						+ "<p> Auction started: " + thisCard.getString("start_time") + "</p>"
+						+ "<p> Auction ends: " + thisCard.getString("end_time")+ "</p>"
+						+ "<p> Auction ID: " + thisCard.getString("auction_id") + "</p>"	
+						+ "<p> Card name: " + thisCard.getString("card_name") + "</p>"
+						+ "<p> Category: " + thisCard.getString("category") + "</p> <br> <br>");
 			} catch (Exception e) {
 				dbsesh.closeConnection(current);
 				out.println(e);
 			} 
-			
-			
 		%>
+		<!-- Allow user to enter bid -->
+		<form id="form" action ="auctionPage.jsp"> 
+		  <input type="search" id="bid" name="b" placeholder="Enter your bid...">
+		  <input type="submit" onclick="location.href='auctionPage.jsp';" value="Submit Bid" />
+		</form>
 </body>
 </html>

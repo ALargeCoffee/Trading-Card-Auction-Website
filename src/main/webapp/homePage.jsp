@@ -46,7 +46,7 @@
 					out.println("<p> Card name: " + prevCard.getString("card_name") + " </p>"
 							+ "<p> Description: " + prevCard.getString("description") + "</p>"
 							+ "<p> Starting price: $" + prevCard.getString("initial_price") + ".00 </p>"
-							+ "<p> Bid ends: " + prevCard.getString("end_time")+ "</p>"
+							+ "<p> Auction ends: " + prevCard.getString("end_time")+ "</p>"
 							+ "<p> Auction ID: " + prevCard.getString("auction_id") + "</p> <br> <br>");
 				}
 				dbsesh.closeConnection(current);
@@ -57,9 +57,9 @@
 		%>
 		
 		<!-- Choose bid item -->
-		<form id="form"> 
+		<form id="form" action ="auctionPage.jsp"> 
 		  <input type="search" id="query" name="q" placeholder="Enter ID of item to bid on...">
-		  <input type="button" onclick="location.href='auctionPage.jsp';" value="Go to Auction Page" />
+		  <input type="submit" onclick="location.href='auctionPage.jsp';" value="Go to Auction Page" />
 		</form>
 		
 		
