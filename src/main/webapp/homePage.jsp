@@ -39,13 +39,15 @@
 		<%  project.pkg.DBConnect dbsesh = new project.pkg.DBConnect();
 			Connection current = dbsesh.getConnection();
 			Statement check = current.createStatement();
-			String query = "SELECT i.end_time, i.initial_price, i.description, i.auction_id FROM item i;";
+			String query = "SELECT i.card_name, i.end_time, i.initial_price, i.description, i.auction_id FROM item i;";
 			try {
 				ResultSet prevCard = check.executeQuery(query);
 				while (prevCard.next()) {
-					out.println("<p> Item: " + prevCard.getString("description") + 
-							" | Starting price: $" +  prevCard.getString("initial_price") + ".00" + " | Bid ends: " 
-							+ prevCard.getString("end_time")+ " | ID: " + prevCard.getString("auction_id") + "</p>");
+					out.println("<p> Card name: " + prevCard.getString("card_name") + " </p>"
+							+ "<p> Description: " + prevCard.getString("description") + "</p>"
+							+ "<p> Starting price: $" + prevCard.getString("initial_price") + ".00 </p>"
+							+ "<p> Bid ends: " + prevCard.getString("end_time")+ "</p>"
+							+ "<p> Auction ID: " + prevCard.getString("auction_id") + "</p> <br> <br>");
 				}
 				dbsesh.closeConnection(current);
 			} catch (Exception e) {
