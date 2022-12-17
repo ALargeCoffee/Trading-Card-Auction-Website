@@ -1,3 +1,4 @@
+<%@ page import="project.pkg.*, java.sql.*" %>
 <!DOCTYPE html>
  <html>
  <head> 
@@ -32,6 +33,27 @@
 		  <input type="search" id="query" name="q" placeholder="Search for cards...">
 		  <button>Search</button>
 		</form>
+		
+		<!-- Show items -->
+		<h2> Items available for bidding </h2>
+		<%  project.pkg.DBConnect dbsesh = new project.pkg.DBConnect();
+			Connection current = dbsesh.getConnection();
+			Statement check = current.createStatement();
+			String query = "SELECT i.end_time, i.initial_price, i.description FROM item i;";
+			try {
+				ResultSet prevCard = check.executeQuery(query);
+				while (prevCard.next()) {
+					out.println("<p> Item: " + prevCard.getString("description") + 
+							" | Starting price: $" +  prevCard.getString("initial_price") + ".00" + " | Bid ends: " 
+							+ prevCard.getString("end_time")+ "</p>");
+				}
+				dbsesh.closeConnection(current);
+			} catch (Exception e) {
+				dbsesh.closeConnection(current);
+				out.println(e);
+			}
+		%>
+		
 		
 		
 	</body>
