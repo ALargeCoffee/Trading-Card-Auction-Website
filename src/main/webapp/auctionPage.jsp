@@ -28,8 +28,7 @@
 						+ "<p> Minimum price: $" + thisCard.getString("min_price") + ".00 </p>"
 						+ "<p> Auction started: " + thisCard.getString("start_time") + "</p>"
 						+ "<p> Auction ends: " + thisCard.getString("end_time")+ "</p>"
-						+ "<p> Auction ID: " + thisCard.getString("auction_id") + "</p>"	
-						+ "<p> Card name: " + thisCard.getString("card_name") + "</p>"
+						+ "<p> Auction ID: " + thisCard.getString("auction_id") + "</p>"
 						+ "<p> Category: " + thisCard.getString("category") + "</p> <br> <br>");
 			} catch (Exception e) {
 				dbsesh.closeConnection(current);
