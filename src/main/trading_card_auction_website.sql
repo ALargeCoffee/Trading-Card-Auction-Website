@@ -57,6 +57,7 @@ DROP TABLE IF EXISTS `buying`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `buying` (
   `bid_price` varchar(9) NOT NULL,
+  `bid_time` datetime DEFAULT NULL,
   `autobid_upper_limit` varchar(9) DEFAULT NULL,
   `user_display_name` varchar(15) NOT NULL,
   `auction_id` int NOT NULL,
@@ -73,14 +74,14 @@ CREATE TABLE `buying` (
 
 LOCK TABLES `buying` WRITE;
 /*!40000 ALTER TABLE `buying` DISABLE KEYS */;
-INSERT INTO `buying` VALUES (100, NULL, 'test_user', 10),
-(200, NULL, 'test_user', 10),
-(200, NULL, 'anotherFake', 11),
-(3, NULL, 'test_user', 12),
-(4, NULL, 'anotherFake', 13),
-(5, NULL, 'test_user', 14),
-(3, NULL, 'test_user', 14),
-(350, NULL, 'anotherFake', 15);
+INSERT INTO `buying` VALUES (100, '2022-12-16 12:00:00', NULL, 'test_user', 10),
+(200, '2022-12-16 4:00:00', NULL, 'test_user', 10),
+(200, '2022-12-16 12:00:00', NULL, 'anotherFake', 11),
+(3, '2022-12-16 12:00:00', NULL, 'test_user', 12),
+(4, '2022-12-16 12:00:00', NULL, 'anotherFake', 13),
+(5, '2022-12-16 12:00:00', NULL, 'test_user', 14),
+(3, '2022-12-16 4:00:00', NULL, 'test_user', 14),
+(350, '2022-12-16 12:00:00', NULL, 'anotherFake', 15);
 /*!40000 ALTER TABLE `buying` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +95,6 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `start_time` date DEFAULT NULL,
   `end_time` date DEFAULT NULL,
-  `bid_list` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `min_price` float DEFAULT NULL,
   `initial_price` float DEFAULT NULL,
@@ -112,12 +112,12 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
-INSERT INTO `item` VALUES ('2022-12-16', '2022-12-18', '$200:test_user$100:test_user', 'An autographed 2021 Justin Fields (Chicago Bear) card', 300, 100, 50, 10, 'sport', 'Justin Fields'),
-('2022-12-16', '2022-12-16', '$200:anotherFake', 'A 2019 Steph Curry (Golden State Warriors) card', 100, 50, 25, 11, 'sport', 'Steph Curry'),
-('2022-12-16', '2022-12-18', '$3:test_user', 'A 2008 Lord of the Rings Gandalf card', 5, 3, 1, 12, 'movie', 'Gandalf'),
-('2022-12-16', '2022-12-16', '$4:anotherFake', 'A 1978 Grease Sandy card', 3, 2, 1, 13, 'movie', 'Sandy'),
-('2022-12-16', '2022-12-18', '$5:test_user$3:test_user', 'A common base set 2 Charmander card', 5, 4, 2, 14, 'game', 'Charmander'),
-('2022-12-16', '2022-12-16', '$350:anotherFake', 'A FireRed/LeafGreen Ex Charizard card', 300, 200, 25, 15, 'game', 'Charizard');
+INSERT INTO `item` VALUES ('2022-12-16', '2023-1-18', 'An autographed 2021 Justin Fields (Chicago Bear) card', 300, 100, 50, 10, 'sport', 'Justin Fields'),
+('2022-12-16', '2022-12-16', 'A 2019 Steph Curry (Golden State Warriors) card', 100, 50, 25, 11, 'sport', 'Steph Curry'),
+('2022-12-16', '2023-1-18', 'A 2008 Lord of the Rings Gandalf card', 5, 3, 1, 12, 'movie', 'Gandalf'),
+('2022-12-16', '2022-12-16', 'A 1978 Grease Sandy card', 3, 2, 1, 13, 'movie', 'Sandy'),
+('2022-12-16', '2023-1-18', 'A common base set 2 Charmander card', 5, 4, 2, 14, 'game', 'Charmander'),
+('2022-12-16', '2022-12-16', 'A FireRed/LeafGreen Ex Charizard card', 300, 200, 25, 15, 'game', 'Charizard');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -170,8 +170,6 @@ INSERT INTO `questionsAsksResponds` VALUES ('Who made this website?', 'People.',
 ('How many items can I bid on?', 'As many as you want!', 'test_user', 'MainRep', 12),
 ('Can anybody answer this question?', NULL, 'test_user', NULL, 13);
 UNLOCK TABLES;
-
-SELECT q.question, q.response, q.asker, q.responder FROM questionsAsksResponds q;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
