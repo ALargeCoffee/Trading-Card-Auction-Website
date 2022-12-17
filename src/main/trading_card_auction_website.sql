@@ -41,7 +41,8 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (2019380917,'user@gmail.com','test_user','1234',NULL,'user'),
+INSERT INTO `user` VALUES (2019380917,'user@gmail.com','test_user','1234',NULL,'normal'),
+(3567693402, 'user2@gmail.com', 'anotherFake', '333', NULL, 'normal'),
 (1234567890,'adminemail@gmail.com','MainAdmin', 'testPass546',NULL,'admin'),
 (4567890123,'cusrep@gmail.com','MainRep','pass234',NULL,'customerRep');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
@@ -55,11 +56,11 @@ DROP TABLE IF EXISTS `buying`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `buying` (
-  `bid_price` varchar(9) DEFAULT NULL,
+  `bid_price` varchar(9) NOT NULL,
   `autobid_upper_limit` varchar(9) DEFAULT NULL,
   `user_display_name` varchar(15) NOT NULL,
-  `auction_id` varchar(15) NOT NULL,
-  PRIMARY KEY (`user_display_name`,`auction_id`),
+  `auction_id` int NOT NULL,
+  PRIMARY KEY (`user_display_name`,`auction_id`, `bid_price`),
   KEY `auction_id` (`auction_id`),
   CONSTRAINT `buying_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`),
   CONSTRAINT `buying_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`)
@@ -72,6 +73,14 @@ CREATE TABLE `buying` (
 
 LOCK TABLES `buying` WRITE;
 /*!40000 ALTER TABLE `buying` DISABLE KEYS */;
+INSERT INTO `buying` VALUES (100, NULL, 'test_user', 10),
+(200, NULL, 'test_user', 10),
+(200, NULL, 'anotherFake', 11),
+(3, NULL, 'test_user', 12),
+(4, NULL, 'anotherFake', 13),
+(5, NULL, 'test_user', 14),
+(3, NULL, 'test_user', 14),
+(350, NULL, 'anotherFake', 15);
 /*!40000 ALTER TABLE `buying` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,14 +94,13 @@ DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `start_time` date DEFAULT NULL,
   `end_time` date DEFAULT NULL,
-  `similar_items` varchar(200) DEFAULT NULL,
   `bid_list` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
-  `min_price` varchar(9) DEFAULT NULL,
-  `initial_price` varchar(9) DEFAULT NULL,
+  `min_price` float DEFAULT NULL,
+  `initial_price` float DEFAULT NULL,
   `increments` float DEFAULT NULL,
-  `auction_id` varchar(15) NOT NULL,
-  `categories` varchar(200) DEFAULT NULL,
+  `auction_id` int NOT NULL,
+  `category` varchar(200) DEFAULT NULL,
   `card_name` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`auction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -104,6 +112,12 @@ CREATE TABLE `item` (
 
 LOCK TABLES `item` WRITE;
 /*!40000 ALTER TABLE `item` DISABLE KEYS */;
+INSERT INTO `item` VALUES ('2022-12-16', '2022-12-18', '$200:test_user$100:test_user', 'An autographed 2021 Justin Fields (Chicago Bear) card', 300, 100, 50, 10, 'sport', 'Justin Fields'),
+('2022-12-16', '2022-12-16', '$200:anotherFake', 'A 2019 Steph Curry (Golden State Warriors) card', 100, 50, 25, 11, 'sport', 'Steph Curry'),
+('2022-12-16', '2022-12-18', '$3:test_user', 'A 2008 Lord of the Rings Gandalf card', 5, 3, 1, 12, 'movie', 'Gandalf'),
+('2022-12-16', '2022-12-16', '$4:anotherFake', 'A 1978 Grease Sandy card', 3, 2, 1, 13, 'movie', 'Sandy'),
+('2022-12-16', '2022-12-18', '$5:test_user$3:test_user', 'A common base set 2 Charmander card', 5, 4, 2, 14, 'game', 'Charmander'),
+('2022-12-16', '2022-12-16', '$350:anotherFake', 'A FireRed/LeafGreen Ex Charizard card', 300, 200, 25, 15, 'game', 'Charizard');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,9 +130,9 @@ DROP TABLE IF EXISTS `selling`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `selling` (
   `user_display_name` varchar(15) NOT NULL,
-  `auction_id` varchar(15) NOT NULL,
+  `auction_id` int NOT NULL,
+  `is_Sold` boolean DEFAULT FALSE,
   PRIMARY KEY (`user_display_name`,`auction_id`),
-  KEY `auction_id` (`auction_id`),
   CONSTRAINT `selling_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`),
   CONSTRAINT `selling_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -130,6 +144,12 @@ CREATE TABLE `selling` (
 
 LOCK TABLES `selling` WRITE;
 /*!40000 ALTER TABLE `selling` DISABLE KEYS */;
+INSERT INTO `selling` VALUES ('anotherFake', 10, FALSE),
+('test_user', 11, TRUE),
+('anotherFake', 12, FALSE),
+('test_user', 13, TRUE),
+('anotherFake', 14, FALSE),
+('test_user', 15, TRUE);
 /*!40000 ALTER TABLE `selling` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -147,7 +167,8 @@ CREATE TABLE `questionsAsksResponds` (
 
 LOCK TABLES `questionsAsksResponds` WRITE;
 INSERT INTO `questionsAsksResponds` VALUES ('Who made this website?', 'People.', 'test_user', 'MainRep', 11),
-('How many items can I bid on?', 'As many as you want!', 'test_user', 'MainRep', 12);
+('How many items can I bid on?', 'As many as you want!', 'test_user', 'MainRep', 12),
+('Can anybody answer this question?', NULL, 'test_user', NULL, 13);
 UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
