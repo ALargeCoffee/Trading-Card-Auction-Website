@@ -171,6 +171,8 @@ INSERT INTO `questionsAsksResponds` VALUES ('Who made this website?', 'People.',
 ('Can anybody answer this question?', NULL, 'test_user', NULL, 13);
 UNLOCK TABLES;
 
+SELECT q.question, q.response, q.asker, q.responder FROM questionsAsksResponds q;
+
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
