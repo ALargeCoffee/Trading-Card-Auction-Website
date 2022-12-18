@@ -56,15 +56,14 @@ DROP TABLE IF EXISTS `buying`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `buying` (
-  `bid_price` varchar(9) NOT NULL,
+  `bid_price` int NOT NULL,
   `bid_time` datetime DEFAULT NULL,
   `autobid_upper_limit` varchar(9) DEFAULT NULL,
-  `user_display_name` varchar(15) NOT NULL,
+  `user_display_name` varchar(15) DEFAULT NULL,
   `auction_id` int NOT NULL,
-  PRIMARY KEY (`user_display_name`,`auction_id`, `bid_price`),
-  KEY `auction_id` (`auction_id`),
-  CONSTRAINT `buying_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`),
-  CONSTRAINT `buying_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`)
+  PRIMARY KEY (`auction_id`, `bid_price`),
+  CONSTRAINT `buying_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`) ON UPDATE CASCADE,
+  CONSTRAINT `buying_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -133,8 +132,8 @@ CREATE TABLE `selling` (
   `auction_id` int NOT NULL,
   `is_Sold` boolean DEFAULT FALSE,
   PRIMARY KEY (`user_display_name`,`auction_id`),
-  CONSTRAINT `selling_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`),
-  CONSTRAINT `selling_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`)
+  CONSTRAINT `selling_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`) ON UPDATE CASCADE,
+  CONSTRAINT `selling_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -161,8 +160,8 @@ CREATE TABLE `questionsAsksResponds` (
     `responder` varchar(25) DEFAULT NULL,
     `question_id` int NOT NULL,
     PRIMARY KEY (`question_id`),
-    CONSTRAINT `questionsAsksResponds_ibfk_1` FOREIGN KEY (`asker`) REFERENCES `user` (`user_display_name`),
-    CONSTRAINT `questionsAsksResponds_ibfk_2` FOREIGN KEY (`responder`) REFERENCES `user` (`user_display_name`)
+    CONSTRAINT `questionsAsksResponds_ibfk_1` FOREIGN KEY (`asker`) REFERENCES `user` (`user_display_name`) ON UPDATE CASCADE,
+    CONSTRAINT `questionsAsksResponds_ibfk_2` FOREIGN KEY (`responder`) REFERENCES `user` (`user_display_name`) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 LOCK TABLES `questionsAsksResponds` WRITE;

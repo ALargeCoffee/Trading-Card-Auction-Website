@@ -7,8 +7,15 @@
 	Statement check = current.createStatement();
 	if (request.getParameter("newUsername") != null) {
 		String newUser = request.getParameter("newUsername");
-		String update = "UPDATE user SET user_display_name='" + newUser + "' WHERE user_display_name='" + username + "';";
-		check.executeUpdate(update);
+		String query = "SELECT * FROM user WHERE user_display_name = '" + newUser + "';";
+		ResultSet exists = check.executeQuery(query);
+		if (exists.next()) {
+			session.setAttribute("invalidUser", true);
+		} else {
+			String update = "UPDATE user SET user_display_name='" + newUser + "' WHERE user_display_name='" + username + "';";
+			check.executeUpdate(update);
+			session.setAttribute("user", newUser);
+		}
 	}
 	if (request.getParameter("password") != null) {
 		String newPass = request.getParameter("password");
