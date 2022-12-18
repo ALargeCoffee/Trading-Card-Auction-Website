@@ -1,4 +1,4 @@
-<%@ page import="project.pkg.*, java.sql.*" %>
+<%@ page import="project.pkg.*, java.sql.*, java.time.LocalDate, java.time.ZoneId" %>
 <!DOCTYPE html>
  <html>
  <head> 
@@ -43,11 +43,18 @@
 			try {
 				ResultSet prevCard = check.executeQuery(query);
 				while (prevCard.next()) {
-					out.println("<p> Card name: " + prevCard.getString("card_name") + " </p>"
-							+ "<p> Description: " + prevCard.getString("description") + "</p>"
-							+ "<p> Starting price: $" + prevCard.getString("initial_price") + ".00 </p>"
-							+ "<p> Auction ends: " + prevCard.getString("end_time")+ "</p>"
-							+ "<p> Auction ID: " + prevCard.getString("auction_id") + "</p> <br> <br>");
+					LocalDate currentDate = LocalDate.now();
+					if (currentDate.isBefore(prevCard.getDate("end_time").toLocalDate())) {
+						Statement check2 = current.createStatement();
+						String query2 = "SELECT max(t1.bid_price) AS price FROM (SELECT b.bid_price, b.auction_id FROM buying b WHERE b.auction_id = " + prevCard.getInt("auction_id") + ") AS t1;";
+						ResultSet currPrice = check2.executeQuery(query2);
+						currPrice.next();
+						out.println("<p> Card name: " + prevCard.getString("card_name") + " </p>"
+								+ "<p> Description: " + prevCard.getString("description") + "</p>"
+								+ "<p> Current price: $" + currPrice.getInt("price") + ".00 </p>"
+								+ "<p> Auction ends: " + prevCard.getString("end_time")+ "</p>"
+								+ "<p> Auction ID: " + prevCard.getString("auction_id") + "</p> <br> <br>");
+					}
 				}
 				dbsesh.closeConnection(current);
 			} catch (Exception e) {
