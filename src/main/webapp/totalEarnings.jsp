@@ -5,11 +5,11 @@
 	Connection current = dbsesh.getConnection();
 	Statement check = current.createStatement();
 	try {
-		ResultSet earnings = check.executeQuery("SELECT bid_list, end_time FROM item i;");
-		double totalSum = 0;
+		int totalSum = 0;
+		ResultSet earnings = check.executeQuery("SELECT max(b.bid_price) AS price, s.is_Sold, b.auction_id FROM buying b INNER JOIN selling s ON b.auction_id = s.auction_id GROUP BY b.auction_id;");
 		while (earnings.next()) {
-			if (earnings.getDate("end_time") != null) {
-				// increment total sum
+			if (earnings.getBoolean("is_Sold")) {
+				totalSum += earnings.getInt("price");
 			}
 		}
 		session.setAttribute("totEarn", totalSum);

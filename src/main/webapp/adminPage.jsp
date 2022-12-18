@@ -43,14 +43,14 @@
 		</form>
 		<%
 			if (session.getAttribute("totEarn") != null) {
-				out.println(session.getAttribute("totEarn"));
+				out.println("$" + session.getAttribute("totEarn"));
 				session.removeAttribute("totEarn");
 			}
 		%>
-		<br>
+		<br> <br>
 		Calculate sales reports for:
 		<br> <br>
-		<form method = "get" action="earningsReport.jsp">
+		<form method = "get" action="earningsReports.jsp">
 			<input type="radio" name="type" value="cards"> Each card
 			<br> <br>
 			<input type="radio" name="type" value="cardTypes"> Each card type
