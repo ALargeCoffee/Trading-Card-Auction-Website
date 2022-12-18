@@ -3,18 +3,19 @@
  <html>
  <head> 
 	<meta charset="utf-8">
-	<title> Admin Tools </title>
+	<title> Home </title>
  </head>
 	<body>
 		<!-- Links at the top of the page -->
 		<% if (session.getAttribute("userType").equals("admin")) { %>
-		<a href="adminPage.jsp" class="nav-link">Admin Tools</a>
+		<a href="adminPage.jsp" class="nav-link"> Admin Tools </a>
 		<% } %>
 		<% if (session.getAttribute("userType").equals("customerRep")) { %>
-		<a href="customerRepPage.jsp" class="nav-link">Customer Rep Tools</a>
+		<a href="customerRepPage.jsp" class="nav-link"> Customer Rep Tools </a>
 		<% } %>
-		<a href="qna.jsp" class="nav-link">Q&amp;A</a>
-		<a href="logout.jsp" class="nav-link">Logout</a>
+		<a href="auctionForm.jsp"> Post Auction </a>
+		<a href="qna.jsp" class="nav-link"> Q&amp;A </a>
+		<a href="logout.jsp" class="nav-link"> Logout </a>
 		
 		<!-- Main body -->
 		<h1> Welcome 
@@ -25,6 +26,9 @@
 				out.println(session.getAttribute("user") + " (Customer Representative)");
 			} else {
 				out.println(session.getAttribute("user"));
+			}
+			if (session.getAttribute("enteredID") != null) {
+				session.removeAttribute("enteredID");
 			}
 		%>! </h1>
 		

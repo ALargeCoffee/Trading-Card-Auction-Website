@@ -58,10 +58,11 @@ DROP TABLE IF EXISTS `buying`;
 CREATE TABLE `buying` (
   `bid_price` int NOT NULL,
   `bid_time` datetime DEFAULT NULL,
-  `autobid_upper_limit` varchar(9) DEFAULT NULL,
-  `user_display_name` varchar(15) DEFAULT NULL,
+  `autobid_upper_limit` int DEFAULT NULL,
+  `autobid_increment` int DEFAULT NULL,
+  `user_display_name` varchar(15) NOT NULL,
   `auction_id` int NOT NULL,
-  PRIMARY KEY (`auction_id`, `bid_price`),
+  PRIMARY KEY (`auction_id`, `bid_price`, `user_display_name`),
   CONSTRAINT `buying_ibfk_1` FOREIGN KEY (`user_display_name`) REFERENCES `user` (`user_display_name`) ON UPDATE CASCADE,
   CONSTRAINT `buying_ibfk_2` FOREIGN KEY (`auction_id`) REFERENCES `item` (`auction_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -73,14 +74,14 @@ CREATE TABLE `buying` (
 
 LOCK TABLES `buying` WRITE;
 /*!40000 ALTER TABLE `buying` DISABLE KEYS */;
-INSERT INTO `buying` VALUES (100, '2022-12-16 12:00:00', NULL, 'test_user', 10),
-(200, '2022-12-16 4:00:00', NULL, 'test_user', 10),
-(200, '2022-12-16 12:00:00', NULL, 'anotherFake', 11),
-(3, '2022-12-16 12:00:00', NULL, 'test_user', 12),
-(4, '2022-12-16 12:00:00', NULL, 'anotherFake', 13),
-(5, '2022-12-16 12:00:00', NULL, 'test_user', 14),
-(3, '2022-12-16 4:00:00', NULL, 'test_user', 14),
-(350, '2022-12-16 12:00:00', NULL, 'anotherFake', 15);
+INSERT INTO `buying` VALUES (100, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 10),
+(200, '2022-12-16 4:00:00', 500, 100, 'test_user', 10),
+(200, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 11),
+(3, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 12),
+(4, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 13),
+(5, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 14),
+(3, '2022-12-16 4:00:00', NULL, NULL, 'test_user', 14),
+(350, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 15);
 /*!40000 ALTER TABLE `buying` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +98,7 @@ CREATE TABLE `item` (
   `description` varchar(200) DEFAULT NULL,
   `min_price` float DEFAULT NULL,
   `initial_price` float DEFAULT NULL,
-  `increments` float DEFAULT NULL,
+  `increments` int DEFAULT NULL,
   `auction_id` int NOT NULL,
   `category` varchar(200) DEFAULT NULL,
   `card_name` varchar(200) DEFAULT NULL,
