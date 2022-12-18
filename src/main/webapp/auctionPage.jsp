@@ -36,16 +36,16 @@
 			} 
 		%>
 		<!-- Allow user to enter bid -->
-		<form id="form" method="GET"> 
-		  <input type="search" id="bid" name="b" placeholder="Enter your bid...">
-		  <input type="submit" value="Submit Bid" />
+		<form method="post" action="bidReader.jsp"> 
+		  <input type="text" name="b1" placeholder="Enter your bid...">
+		  <input type="submit" name = "b2" value="Submit Bid" />
 		</form>
 		
 		<!-- Show the user's current bid -->
 		<%
-			if (request.getParameter("bid") != null)
+			if (request.getParameter("b") != null)
 			{
-				out.println("<p> Current bid: $" + request.getParameter("bid") + ".00 </p>");
+				out.println("<p> Current bid: $" + request.getParameter("b") + ".00 </p>");
 			}
 		out.println("<p> $0.00 </p>");
 		%>
