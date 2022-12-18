@@ -15,7 +15,7 @@
 		<%  project.pkg.DBConnect dbsesh = new project.pkg.DBConnect();
 			Connection current = dbsesh.getConnection();
 			Statement check = current.createStatement();
-			Integer enteredID = Integer.parseInt(request.getParameter("q"));
+			Integer enteredID = Integer.parseInt(request.getParameter("item_id"));
 			// select all other attributes of item based on its ID
 			// no bid list for now
 			String query = "SELECT i.start_time, i.end_time, i.description, i.min_price, i.initial_price, i.category, i.card_name, i.auction_id FROM item i WHERE i.auction_id =" + enteredID +";";
@@ -36,9 +36,19 @@
 			} 
 		%>
 		<!-- Allow user to enter bid -->
-		<form id="form" action ="auctionPage.jsp"> 
+		<form id="form" method="GET"> 
 		  <input type="search" id="bid" name="b" placeholder="Enter your bid...">
-		  <input type="submit" onclick="location.href='auctionPage.jsp';" value="Submit Bid" />
+		  <input type="submit" value="Submit Bid" />
 		</form>
+		
+		<!-- Show the user's current bid -->
+		<%
+			if (request.getParameter("bid") != null)
+			{
+				out.println("<p> Current bid: $" + request.getParameter("bid") + ".00 </p>");
+			}
+		out.println("<p> $0.00 </p>");
+		%>
+		
 </body>
 </html>

@@ -58,10 +58,9 @@
 		
 		<!-- Choose bid item -->
 		<form id="form" action ="auctionPage.jsp"> 
-		  <input type="search" id="query" name="q" placeholder="Enter ID of item to bid on...">
+		  <input type="search" id="query" name="item_id" placeholder="Enter ID of item to bid on...">
 		  <input type="submit" onclick="location.href='auctionPage.jsp';" value="Go to Auction Page" />
 		</form>
-		
 		
 		
 	</body>
