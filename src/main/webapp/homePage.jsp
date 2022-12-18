@@ -7,14 +7,14 @@
  </head>
 	<body>
 		<!-- Links at the top of the page -->
-		<a href="logout.jsp" class="nav-link">Logout</a>
-		<a href="qna.jsp" class="nav-link">Q&amp;A</a>
 		<% if (session.getAttribute("userType").equals("admin")) { %>
 		<a href="adminPage.jsp" class="nav-link">Admin Tools</a>
 		<% } %>
 		<% if (session.getAttribute("userType").equals("customerRep")) { %>
 		<a href="customerRepPage.jsp" class="nav-link">Customer Rep Tools</a>
 		<% } %>
+		<a href="qna.jsp" class="nav-link">Q&amp;A</a>
+		<a href="logout.jsp" class="nav-link">Logout</a>
 		
 		<!-- Main body -->
 		<h1> Welcome 
@@ -36,6 +36,13 @@
 		
 		<!-- Show items -->
 		<h2> Items available for bidding </h2>
+		<!-- Choose bid item -->
+		<p>To view an item, please insert its listed auction ID into the following form and click submit:</p>
+		<form id="form" action ="auctionPage.jsp", action ="bidReader.jsp"> 
+		  <input type="search" id="query" name="item_id" placeholder="Enter ID of item to bid on...">
+		  <input type="submit" onclick="location.href='auctionPage.jsp';" value="Go to Auction Page" />
+		</form> <br> <br>
+		<!-- Show items -->
 		<%  project.pkg.DBConnect dbsesh = new project.pkg.DBConnect();
 			Connection current = dbsesh.getConnection();
 			Statement check = current.createStatement();
@@ -62,14 +69,6 @@
 				out.println(e);
 			}
 		%>
-		
-		<!-- Choose bid item -->
-		<form id="form" action ="auctionPage.jsp", action ="bidReader.jsp"> 
-		  <input type="search" id="query" name="item_id" placeholder="Enter ID of item to bid on...">
-		  <input type="submit" onclick="location.href='auctionPage.jsp';" value="Go to Auction Page" />
-		</form>
-		
-		
 	</body>
 </html>
 	
