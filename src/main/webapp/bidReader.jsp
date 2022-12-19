@@ -17,7 +17,15 @@
 		ResultSet incr = check.executeQuery("SELECT i.increments FROM item i WHERE i.auction_id = " + enteredID + ";");
 		incr.next();
 		int increment = incr.getInt("increments");
-		if (bidVal >= base && (bidVal - base) >= increment) {
+		int compare, compare2;
+		if (request.getParameter("b2") == null) {
+			compare = bidVal;
+			compare2 = bidVal - base;
+		} else {
+			compare = base + bidVal;
+			compare2 = bidVal;
+		}
+		if (compare >= base && compare2 >= increment) {
 			if (request.getParameter("b2") == null) {
 				int newPrice = bidVal;
 				check.executeUpdate("INSERT INTO buying VALUES (" + newPrice + ",'" + params[0] + " " + params[1] + "', NULL, NULL, '" + session.getAttribute("user") + "', " + enteredID + ");");

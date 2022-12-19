@@ -5,7 +5,7 @@
 	project.pkg.DBConnect dbsesh = new project.pkg.DBConnect();
 	Connection current = dbsesh.getConnection();
 	Statement check = current.createStatement();
-	if (request.getParameter("newUsername") != null) {
+	if (!request.getParameter("newUsername").isEmpty()) {
 		String newUser = request.getParameter("newUsername");
 		String query = "SELECT * FROM user WHERE user_display_name = '" + newUser + "';";
 		ResultSet exists = check.executeQuery(query);
@@ -17,18 +17,18 @@
 			session.setAttribute("user", newUser);
 		}
 	}
-	if (request.getParameter("password") != null) {
+	if (!request.getParameter("password").isEmpty()) {
 		String newPass = request.getParameter("password");
 		String update = "UPDATE user SET user_password='" + newPass + "' WHERE user_display_name='" + username + "';";
 		check.executeUpdate(update);
 	}
-	if (request.getParameter("number") != null) {
+	if (!request.getParameter("number").isEmpty()) {
 		String quick = request.getParameter("number");
 		int newNumber = Integer.parseInt(quick);
 		String update = "UPDATE user SET phone_number='" + newNumber + "' WHERE user_display_name='" + username + "';";
 		check.executeUpdate(update);
 	}
-	if (request.getParameter("email") != null) {
+	if (!request.getParameter("email").isEmpty()) {
 		String newEmail = request.getParameter("email");
 		String update = "UPDATE user SET email='" + newEmail + "' WHERE user_display_name='" + username + "';";
 		check.executeUpdate(update);

@@ -14,10 +14,10 @@
 		Statement check = curr.createStatement();
 		try {
 			if (reportType.equals("cards")) {
-				String cardQuery = "SELECT i.card_name, s.is_Sold, max(b.bid_price) AS price FROM item i INNER JOIN buying b ON i.auction_id = b.auction_id INNER JOIN selling s ON i.auction_id = s.auction_id GROUP BY i.card_name;";
+				String cardQuery = "SELECT i.auction_id, i.card_name, s.is_Sold, max(b.bid_price) AS price FROM item i INNER JOIN buying b ON i.auction_id = b.auction_id INNER JOIN selling s ON i.auction_id = s.auction_id GROUP BY i.auction_id;";
 				ResultSet cards = check.executeQuery(cardQuery);
 				while (cards.next()) {
-					out.print(cards.getString("card_name") + ": ");
+					out.print(cards.getString("card_name") + " (" + cards.getInt("auction_id") + "): ");
 					if (cards.getBoolean("is_Sold")) {
 						out.println("$" + cards.getInt("price") + "<br> <br>");
 					} else {

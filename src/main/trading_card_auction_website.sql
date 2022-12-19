@@ -77,11 +77,12 @@ LOCK TABLES `buying` WRITE;
 INSERT INTO `buying` VALUES (100, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 10),
 (200, '2022-12-16 4:00:00', 500, 100, 'test_user', 10),
 (200, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 11),
-(3, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 12),
-(4, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 13),
+(3, '2022-12-16 12:00:00', NULL, NULL, 'MainRep', 12),
+(2, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 13),
 (5, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 14),
 (3, '2022-12-16 4:00:00', NULL, NULL, 'test_user', 14),
-(350, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 15);
+(350, '2022-12-16 12:00:00', NULL, NULL, 'anotherFake', 15),
+(250, '2022-12-16 12:00:00', NULL, NULL, 'test_user', 16);
 /*!40000 ALTER TABLE `buying` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +98,7 @@ CREATE TABLE `item` (
   `end_time` date DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `min_price` float DEFAULT NULL,
-  `initial_price` float DEFAULT NULL,
+  `initial_price` int DEFAULT NULL,
   `increments` int DEFAULT NULL,
   `auction_id` int NOT NULL,
   `category` varchar(200) DEFAULT NULL,
@@ -117,7 +118,8 @@ INSERT INTO `item` VALUES ('2022-12-16', '2023-1-18', 'An autographed 2021 Justi
 ('2022-12-16', '2023-1-18', 'A 2008 Lord of the Rings Gandalf card', 5, 3, 1, 12, 'movie', 'Gandalf'),
 ('2022-12-16', '2022-12-16', 'A 1978 Grease Sandy card', 3, 2, 1, 13, 'movie', 'Sandy'),
 ('2022-12-16', '2023-1-18', 'A common base set 2 Charmander card', 5, 4, 2, 14, 'game', 'Charmander'),
-('2022-12-16', '2022-12-16', 'A FireRed/LeafGreen Ex Charizard card', 300, 200, 25, 15, 'game', 'Charizard');
+('2022-12-16', '2022-12-16', 'A FireRed/LeafGreen Ex Charizard card', 300, 200, 25, 15, 'game', 'Charizard'),
+('2022-12-16', '2022-12-16', 'A rookie Steph Curry (Golden State Warriors) card', 100, 50, 25, 16, 'sport', 'Steph Curry');
 /*!40000 ALTER TABLE `item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +151,8 @@ INSERT INTO `selling` VALUES ('anotherFake', 10, FALSE),
 ('anotherFake', 12, FALSE),
 ('test_user', 13, TRUE),
 ('anotherFake', 14, FALSE),
-('test_user', 15, TRUE);
+('test_user', 15, TRUE),
+('anotherFake', 16, TRUE);
 /*!40000 ALTER TABLE `selling` ENABLE KEYS */;
 UNLOCK TABLES;
 

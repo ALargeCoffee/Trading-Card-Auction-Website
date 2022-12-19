@@ -8,7 +8,8 @@
 	</head>
 	<body>
 		<!-- Links at top of page -->
-		<a href="homePage.jsp">Home</a>
+		<a href="homePage.jsp">Home</a> &nbsp;
+		<a href="auctionHistory.jsp">Auction History</a> &nbsp;
 		<a href="logout.jsp">Logout</a>
 		
 		<!-- Main body -->

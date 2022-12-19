@@ -21,10 +21,10 @@
 					out.print(cards.getString("card_name") + ": " + cards.getInt("sells") + " sold <br> <br>");
 				}
 			} else {
-				ResultSet buyers = check.executeQuery("SELECT t2.user_display_name, count(*) AS buys FROM (SELECT t1.auction_id, t1.user_display_name, max(t1.bid_price) AS price FROM (SELECT b.auction_id, b.user_display_name, b.bid_price, s.is_Sold FROM buying b INNER JOIN selling s ON b.auction_id = s.auction_id WHERE s.is_Sold = true) AS t1 GROUP BY t1.auction_id) AS t2 GROUP BY t2.user_display_name");
+				ResultSet buyers = check.executeQuery("SELECT t2.user_display_name, count(*) AS buys FROM (SELECT t1.auction_id, t1.user_display_name, max(t1.bid_price) AS price FROM (SELECT b.auction_id, b.user_display_name, b.bid_price, s.is_Sold FROM buying b INNER JOIN selling s ON b.auction_id = s.auction_id WHERE s.is_Sold = true) AS t1 GROUP BY t1.auction_id) AS t2 GROUP BY t2.user_display_name ORDER BY buys DESC");
 				out.println("Best buyers: <br> <br>");
 				while (buyers.next()) {
-					out.print(buyers.getString("user_display_name") + ": " + buyers.getInt("buys") + " buys");
+					out.print(buyers.getString("user_display_name") + ": " + buyers.getInt("buys") + " buys <br> <br>");
 				}
 			}
 			dbsesh.closeConnection(current);

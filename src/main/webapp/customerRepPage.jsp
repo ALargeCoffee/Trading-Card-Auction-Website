@@ -6,7 +6,10 @@
 	</head>
 	<body>
 		<!-- Links at top -->
-		<a href="homePage.jsp">Home</a>
+		<a href="homePage.jsp">Home</a> &nbsp;
+		<a href="auctionHistory.jsp">Auction History</a> &nbsp;
+		<a href="qna.jsp"> Q&amp;A </a> &nbsp;
+		<a href="logout.jsp">Logout</a>
 		
 		<!-- Main body -->
 		<h1>Customer Representative Tools</h1>
