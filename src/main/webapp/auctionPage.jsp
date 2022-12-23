@@ -30,12 +30,18 @@
 				ResultSet currPrice = check2.executeQuery("SELECT max(t1.bid_price) AS price FROM (SELECT b.bid_price, b.auction_id FROM buying b WHERE b.auction_id = " + enteredID + ") AS t1;");
 				currPrice.next();
 				thisCard.next();
+				int price;
+				if (currPrice.getInt("price") == 0) {
+					price = thisCard.getInt("initial_price");
+				} else {
+					price = currPrice.getInt("price");
+				}
 				out.println("<p> Name: " + thisCard.getString("card_name") + " </p>"
 						+ "<p> Description: " + thisCard.getString("description") + "</p>"
 						+ "<p> Category: " + thisCard.getString("category") + "</p>"
 						+ "<p> Auction started: " + thisCard.getString("start_time") + "</p>"
 						+ "<p> Auction ends: " + thisCard.getString("end_time")+ "</p> <br>"
-						+ "<p> Current price: $" + currPrice.getInt("price") + ".00 </p>"
+						+ "<p> Current price: $" + price + ".00 </p>"
 						+ "<p> Minimum bid: $" + thisCard.getInt("increments") + ".00 over current price</p> <br> <h2> Default Bid: </h2>");
 			} catch (Exception e) {
 				dbsesh.closeConnection(current);

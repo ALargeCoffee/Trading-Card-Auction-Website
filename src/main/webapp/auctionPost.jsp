@@ -20,6 +20,7 @@
 		Connection current = dbsesh.getConnection();
 		Statement check = current.createStatement();
 		check.executeUpdate("INSERT INTO item VALUES ('"+ startDate + "','" + endDate + "','" + description + "'," + minPrice + "," + startPrice + "," + increment + "," + auctionID + ",'" + category + "','" + cardName + "');");
+		check.executeUpdate("INSERT INTO selling VALUES ('" + session.getAttribute("user") + "', " + auctionID + ", false);");
 		dbsesh.closeConnection(current);
 		response.sendRedirect("homePage.jsp");
 	} else {
